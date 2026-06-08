@@ -1,4 +1,4 @@
-Here's your README content — copy and paste it:
+![Tests](https://github.com/sarvnnnnn/data-driven-test-saucedemo/actions/workflows/tests.yml/badge.svg)
 
 ```markdown
 # 📊 Data-Driven Test Pipeline — SauceDemo
