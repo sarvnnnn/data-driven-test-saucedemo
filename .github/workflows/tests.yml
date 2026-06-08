@@ -23,12 +23,12 @@ jobs:
       run: |
         pip install selenium pytest pytest-html pandas webdriver-manager requests
 
-    - name: 🌐 Set up Chrome
-      uses: browser-actions/setup-chrome@v1
-
     - name: 🧪 Run tests
       run: |
         pytest test_data_driven.py -v --html=report.html
+      env:
+        DISPLAY: :99
+        CHROME_OPTIONS: --headless --no-sandbox --disable-dev-shm-usage
 
     - name: 📊 Upload test report
       uses: actions/upload-artifact@v3
