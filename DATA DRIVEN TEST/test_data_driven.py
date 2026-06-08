@@ -32,7 +32,9 @@ def load_users():
 @pytest.fixture
 def driver():
     options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
         options=options
