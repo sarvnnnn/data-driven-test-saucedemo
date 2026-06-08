@@ -1,0 +1,38 @@
+name: 🧪 Run Data-Driven Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v3
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install dependencies
+      run: |
+        pip install selenium pytest pytest-html pandas webdriver-manager requests
+
+    - name: 🌐 Set up Chrome
+      uses: browser-actions/setup-chrome@v1
+
+    - name: 🧪 Run tests
+      run: |
+        pytest test_data_driven.py -v --html=report.html
+
+    - name: 📊 Upload test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-report
+        path: report.html
